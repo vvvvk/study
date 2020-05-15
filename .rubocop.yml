@@ -1,6 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:
+    - 'vendor/**/*'
     - 'coverage/**/*'
     - 'config/**/*'
     - 'script/**/*'
@@ -37,6 +38,27 @@ Metrics/ModuleLength:
 
 Metrics/PerceivedComplexity:
   Max: 10
+
+Lint/RaiseException:
+  Enabled: false
+
+Lint/StructNewOverride:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/MethodMissingSuper:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
 
 Style/NumericLiterals:
   Enabled: false
