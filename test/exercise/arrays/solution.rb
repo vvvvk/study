@@ -1,35 +1,29 @@
 module Exercise
   module Arrays
     class << self
-      def reduce(array, acc = nil)
-        acc, *rest = acc.nil? ? array : [acc, *array]
-        rest.length.times { |i| acc = yield(acc, rest[i]) }
-        acc
-      end
-
       def replace(array)
-        max = reduce(array) { |acc, el| el > acc ? el : acc }
-        reduce(array, []) { |acc, el| acc << (el.positive? ? max : el) }
+        max = array.reduce { |acc, el| el > acc ? el : acc }
+        array.map { |el| el.positive? ? max : el }
       end
 
       def search(array, query)
-        iter = lambda { |part, shift_index|
-          return -1 if part.empty?
+        iter = lambda { |shift_index, len|
+          return -1 if len.zero?
 
-          index = part.length / 2
-          current = part[index]
+          index = len / 2
+          current = array[shift_index + index]
 
           if current == query
             shift_index + index
           elsif current > query
-            iter.call(part[0, index], shift_index)
+            iter.call(shift_index, index)
           else
-            new_part = part[index.next, part.length - index.next]
+            new_len = len - index.next
             new_shift_index = shift_index + index.next
-            iter.call(new_part, new_shift_index)
+            iter.call(new_shift_index, new_len)
           end
         }
-        iter.call(array, 0)
+        iter.call(0, array.length)
       end
     end
   end
