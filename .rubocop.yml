@@ -1,7 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:
-    - 'vendor/**/*'
+    - 'vendor/bundle/**/*'
     - 'coverage/**/*'
     - 'config/**/*'
     - 'script/**/*'
